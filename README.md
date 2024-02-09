@@ -1,6 +1,6 @@
 # Line Following Robot using ROS2 and OpenCV
 
-[![Line Following Robot Video](https://github.com/Isa1asN/line_following_robot_ros2/blob/main/Screencast%20from%2002-09-2024%2001_43_40%20PM.mp4)](https://github.com/Isa1asN/line_following_robot_ros2/blob/main/Screencast%20from%2002-09-2024%2001_43_40%20PM.mp4)
+[![Line Following Robot Video](https://drive.google.com/file/d/1DOVd3U0Ok3RcvjlpEZ9gmwxaw-tgUjPy/view?usp=sharing)](https://drive.google.com/file/d/1DOVd3U0Ok3RcvjlpEZ9gmwxaw-tgUjPy/view?usp=sharing)
 
 ## Setup
 
