@@ -1,0 +1,350 @@
+<!-- <?xml version="1.0"?>
+<robot name="arm_1dof">
+
+<material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0" />
+  </material>
+  <material name="Red">
+    <color rgba="0.8 0.0 0.0 1.0" />
+  </material>
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0" />
+  </material>
+
+
+<link name="chassis">
+    <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.4 0.2 0.1" />
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <box size="0.4 0.2 0.1" />
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="25" />
+            <inertia ixx="0.03" iyy="0.03" izz="0.03" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+  </link>
+
+    <gazebo reference="chassis">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+    <!-- add a caster wheel link -->
+    <link name="caster_wheel">
+        <visual>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+                <sphere radius="0.04"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 0 0" xyz="0 0 0" />
+            <geometry>
+              <sphere radius="0.04"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="1" />
+            <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+    </link>
+
+    <gazebo reference="caster_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <!-- add a caster wheel joint -->
+    <joint name="caster_wheel_joint" type="revolute">
+        <parent link="chassis"/>
+        <child link="caster_wheel"/>
+        <origin rpy="0 0 0" xyz="0.15 0.0 -0.04" />
+        <axis xyz="1.0 1.0 1.0"/>
+        <limit effort="100.0" velocity="1.0"/>
+    </joint>
+
+    <link name="left_wheel">
+        <visual>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0.025 0" />
+            <geometry>
+                <cylinder length="0.04" radius="0.08"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0" />
+            <geometry>
+              <cylinder length="0.04" radius="0.08"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="5" />
+            <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+    </link>
+
+    <gazebo reference="left_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="left_wheel_joint" type="revolute">
+        <parent link="chassis"/>
+        <child link="left_wheel"/>
+        <origin rpy="0 0 0" xyz="-0.15 0.1 0.0" />
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.57" upper="1.57" effort="100.0" velocity="1.0"/>
+    </joint>
+
+    <link name="right_wheel">
+        <visual>
+            <origin rpy="0 1.5707 1.5707" xyz="0 -0.025 0" />
+            <geometry>
+                <cylinder length="0.04" radius="0.08"/>
+            </geometry>
+        </visual>
+        <collision>
+            <origin rpy="0 1.5707 1.5707" xyz="0 0 0" />
+            <geometry>
+              <cylinder length="0.04" radius="0.08"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="5" />
+            <inertia ixx="0.0001" iyy="0.0001" izz="0.0001" ixy="0.0" ixz="0.0" iyz="0.0" />
+        </inertial>
+    </link><!-- <?xml version="1.0"?>
+
+<robot name="arm_1dof" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="joints.xacro" />
+    
+    <material name="Black">
+        <color rgba="0.0 0.0 0.0 1.0" />
+    </material>
+    <material name="Red">
+        <color rgba="0.8 0.0 0.0 1.0" />
+    </material>
+    <material name="White">
+        <color rgba="1.0 1.0 1.0 1.0" />
+    </material>
+
+
+    
+<link name="bottom_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.3 0.3 0.2" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0" />
+      <geometry>
+        <box size="0.3 0.3 0.2" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="100" />
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03" />
+    </inertial>
+  </link>
+
+    <gazebo reference="bottom_link">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
+<joint name="joint1" type="revolute" >
+        <origin rpy="0 0 0" xyz="0 0 0.1" />
+        <parent link="bottom_link" />
+        <child link="mid_low_link" />
+        <axis xyz="0 0 1" />
+        <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0" />
+    </joint>
+
+    <link name="mid_low_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" /
+            <plugi>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03" />
+    </inertial>
+  </link>
+
+  <gazebo reference="mid_low_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+<joint name="joint2" type="revolute">
+    <origin rpy="0 0 0" xyz="0.05 0 0.35" />
+    <parent link="mid_low_link" />
+    <child link="mid_top_link" />
+    <axis xyz="1 0 0" />
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0" />
+  </joint>
+
+  <link name="mid_top_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0.05 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.05 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03" />
+    </inertial>
+  </link>
+
+  <gazebo reference="mid_top_link">
+    <material>Gazebo/Black</material>
+  </gazebo>
+
+<joint name="joint3" type="revolute">
+    <origin rpy="0 0 0" xyz="0 0 0.3" />
+    <parent link="mid_top_link" />
+    <child link="top_link" />
+    <axis xyz="1 0 0" />
+    <limit effort="100.0" lower="-1.57" upper="1.57" velocity="1.0" />
+  </joint>
+
+  <link name="top_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="-0.05 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.05 0 0.2" />
+      <geometry>
+        <box size="0.1 0.1 0.4" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.1" />
+      <inertia ixx="0.03" ixy="0.0" ixz="0.0" iyy="0.03" iyz="0.0" izz="0.03" />
+    </inertial>
+  </link>
+
+  <gazebo reference="top_link">
+    <material>Gazebo/White</material>
+  </gazebo>
+
+
+
+
+  <ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="joint1">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+    <joint name="joint2">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+    
+    <joint name="joint3">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint> 
+
+
+  
+<ros2_control name="GazeboSystem" type="system">
+    <hardware>
+      <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+    </hardware>
+    <joint name="joint1">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+    <joint name="joint2">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+    <joint name="joint3">
+      <command_interface name="position">
+        <param name="min">-6.2832</param>
+        <param name="max">6.2832</param>
+      </command_interface>
+      <state_interface name="position" />
+      <state_interface name="velocity" />
+      <state_interface name="effort" />
+    </joint>
+  </ros2_control>
+
+  <gazebo>
+    <plugin filename="libgazebo_ros2_control.so" name="gazebo_ros2_control">
+
+      <!-- <parameters>$(find simple_robot_description)/config/arm_1dof.yaml</parameters> -->
+      <parameters>/home/yosef/ros2_ws/ros2-gazebo-sim/src/simple_robot_description/config/arm_1dof.yaml</parameters>
+      <robot_sim_type>gazebo_ros2_control/GazeboSystem</robot_sim_type>
+
+    </plugin>
+  </gazebo>
+   
+    <xacro:config_ctr_gazebo /> 
+</robot> -->
+
+    <gazebo reference="right_wheel">
+        <material>Gazebo/White</material>
+    </gazebo>
+
+    <joint name="right_wheel_joint" type="revolute">
+        <parent link="chassis"/>
+        <child link="right_wheel"/>
+        <origin rpy="0 0 0" xyz="-0.15 -0.1 0.0" /> 
+        <axis xyz="0.0 1.0 0.0"/>
+        <limit lower="-1.57" upper="1.57" effort="100.0" velocity="1.0"/>
+    </joint>  
+</robot>
+ -->
