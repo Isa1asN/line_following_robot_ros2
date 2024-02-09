@@ -1,7 +1,7 @@
 # line_following_robot_ros2
 A line track follower robot using ros2 and cv2
 
-<video src='' width='600'/>
+<video src='https://github.com/Isa1asN/line_following_robot_ros2/blob/main/Screencast%20from%2002-09-2024%2001_43_40%20PM.mp4' width='600'/>
 
 Add the model path to env:
 - export GAZEBO_MODEL_PATH=/home/esayas/Desktop/line_follower/src/simple_robot_description/models:$GAZEBO_MODEL_PATH
