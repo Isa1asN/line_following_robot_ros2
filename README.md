@@ -1,6 +1,6 @@
 # Line Following Robot using ROS2 and OpenCV
 
-<video src=''/>
+[YouTube video](https://youtu.be/0nfNSA2cqoE?si=NMAKeIKJ6WOGHYg-)
 
 
 ## Setup
